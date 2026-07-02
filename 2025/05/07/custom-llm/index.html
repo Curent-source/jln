@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+    
+      Customizing an LLM &middot; john laudun
+    
+  </title>
+
+  <link rel="stylesheet" href="/jln/styles.css">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/jln/assets/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/jln/assets/favicon.ico">
+  <link rel="alternate" type="application/atom+xml" title="john laudun" href="/jln/atom.xml">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Customizing an LLM" />
+<meta name="author" content="John Laudun" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="There are a few of ways to customize an LLM to allow you to bring your own library of sources to bear on a problem. This could be anything from that collection of manuals for all your home appliances to scholarship on conspiracy theories. What matters is that you have the documents available in machine-readable form. For most people, this will be PDFs with text layers embedded either because they were produced that way or they were later OCRed. (Note to fellow scholars: early OCR was pretty ragged. I often re-OCR documents from JSTOR that are from its early days.)" />
+<meta property="og:description" content="There are a few of ways to customize an LLM to allow you to bring your own library of sources to bear on a problem. This could be anything from that collection of manuals for all your home appliances to scholarship on conspiracy theories. What matters is that you have the documents available in machine-readable form. For most people, this will be PDFs with text layers embedded either because they were produced that way or they were later OCRed. (Note to fellow scholars: early OCR was pretty ragged. I often re-OCR documents from JSTOR that are from its early days.)" />
+<link rel="canonical" href="https://johnlaudun.github.io/jln/2025/05/07/custom-llm/" />
+<meta property="og:url" content="https://johnlaudun.github.io/jln/2025/05/07/custom-llm/" />
+<meta property="og:site_name" content="john laudun" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-05-07T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Customizing an LLM" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"John Laudun","url":"https://twitter.com/mdo"},"dateModified":"2025-05-07T00:00:00+00:00","datePublished":"2025-05-07T00:00:00+00:00","description":"There are a few of ways to customize an LLM to allow you to bring your own library of sources to bear on a problem. This could be anything from that collection of manuals for all your home appliances to scholarship on conspiracy theories. What matters is that you have the documents available in machine-readable form. For most people, this will be PDFs with text layers embedded either because they were produced that way or they were later OCRed. (Note to fellow scholars: early OCR was pretty ragged. I often re-OCR documents from JSTOR that are from its early days.)","headline":"Customizing an LLM","mainEntityOfPage":{"@type":"WebPage","@id":"https://johnlaudun.github.io/jln/2025/05/07/custom-llm/"},"url":"https://johnlaudun.github.io/jln/2025/05/07/custom-llm/"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+
+  <body>
+
+    <div class="container content">
+      
+      <nav class="nav">
+  <ul>
+    
+    <li><a href="/jln/vita">vita</a></li>
+    <li><a href="/jln/research">research</a></li>
+    <li><a href="/jln/teaching/">teaching</a></li>
+    <li><a href="/jln/about">about</a></li>
+  </ul>
+</nav>
+      <header class="masthead">
+        <h3 class="masthead-title">
+          <a href="/jln/" title="Home">john laudun</a>
+          <small>research, teaching, writing</small>
+        </h3>
+      </header>
+
+      <main>
+        <article class="post">
+  <h1 class="post-title">Customizing an LLM</h1>
+  <time datetime="2025-05-07T00:00:00+00:00" class="post-date">07 May 2025</time>
+  <p>There are a few of ways to customize an LLM to allow you to bring your own library of sources to bear on a problem. This could be anything from that collection of manuals for all your home appliances to scholarship on conspiracy theories. What matters is that you have the documents available in machine-readable form. For most people, this will be PDFs with text layers embedded either because they were produced that way or they were later OCRed. (Note to fellow scholars: early OCR was pretty ragged. I often re-OCR documents from JSTOR that are from its early days.)</p>
+
+<p>From hardest to easiest, your customization options are: retraining an LLM, retrieval augments generation (RAG), and adding context documents. For most, the first option is not really one for a number of reasons. First, a lot of the LLMs, like ChatGPT, are proprietary. Second, retraining requires hardware that is expensive, and, third, it also requires the ability to work in Python. (Python is a very friendly language, but no matter how friendly it is, creating or customizing something as complex as a transformer is bit mind-boggling.)</p>
+
+<p>A simple example might help: last year as part of an introduction to text analytics class, I thought I would see how do-able it would be for students to train a GPT on a small data set. I downloaded a collection of around a thousand jokes from Reddit and started the training process. Following the recommendation that I should have at least 30 <em>epoch</em>s, I hit return and initiated the process: each epoch used all 8 of my M1 Macbook’s CPUs and took an hour. By the end of the second hour, the thing was getting so hot that I called it quits. So, yeah, you at least need dedicated hardware.</p>
+
+<p>With retraining an LLM off the table, the easiest option is to provide <strong>context</strong> for your session. You can do this by uploading documents to a particular session or, with some LLMs like ChatGPT, you can create a custom GPT which references a collection of documents which you upload. (These can even be shared either to the public or via a link.) The advantage of providing context documents is that it is straightforward and relatively easy. But the information exists in the model’s information space, and so it works best with relatively small collections: the model goes through the entire context each time it answers a question.</p>
+
+<p>The somewhat more involved move is to set up <strong>retrieval augmented generation</strong>. RAG allows an LLM to be more selective. It is better for larger, and more dynamic, data sets.</p>
+
+</article>
+
+
+<aside class="related">
+  <h3>Related posts</h3>
+  <ul class="related-posts">
+    
+      <li>
+        <a href="/jln/2026/03/11/cheat-code/">
+          LLMs Are Not a Cheat Code to Life
+          <small><time datetime="2026-03-11T00:00:00+00:00">11 Mar 2026</time></small>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/jln/2025/12/30/recommendations/">
+          So You Want a Letter of Recommendation
+          <small><time datetime="2025-12-30T00:00:00+00:00">30 Dec 2025</time></small>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/jln/2025/12/10/sage-package/">
+          Empty Envelope
+          <small><time datetime="2025-12-10T00:00:00+00:00">10 Dec 2025</time></small>
+        </a>
+      </li>
+    
+  </ul>
+</aside>
+
+
+      </main>
+
+      <footer class="footer">
+        <small>
+          &copy; <time datetime="2026-07-01T13:53:35+00:00">2026</time>. All rights reserved.
+        </small>
+      </footer>
+    </div>
+
+    
+  </body>
+</html>
